@@ -7,7 +7,7 @@ namespace R5T.F0030
 	{
 		#region Infrastructure
 
-	    public static SftpOperator Instance { get; } = new();
+	    public static SftpOperator Instance { get; } = new SftpOperator();
 
 	    private SftpOperator()
 	    {

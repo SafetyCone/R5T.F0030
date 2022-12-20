@@ -7,7 +7,7 @@ namespace R5T.F0030
 	{
 		#region Infrastructure
 
-	    public static SshOperator Instance { get; } = new SshOperator();
+	    public static ISshOperator Instance { get; } = new SshOperator();
 
 	    private SshOperator()
 	    {

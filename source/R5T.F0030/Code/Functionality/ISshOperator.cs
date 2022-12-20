@@ -4,7 +4,7 @@ using Renci.SshNet;
 
 using R5T.T0132;
 using R5T.T0144;
-
+using System.Threading.Tasks;
 
 namespace R5T.F0030
 {
@@ -54,13 +54,22 @@ namespace R5T.F0030
             return output;
         }
 
-        public void InConnectionContext(
+        public void InConnectionContext_Synchronous(
             IRemoteServerAuthentication remoteServerAuthentication,
             Action<ConnectionInfo> connectionContextAction)
         {
             var connectionInfo = this.GetConnectionInfo(remoteServerAuthentication);
 
             connectionContextAction(connectionInfo);
+        }
+
+        public async Task InConnectionContext(
+            IRemoteServerAuthentication remoteServerAuthentication,
+            Func<ConnectionInfo, Task> connectionContextAction)
+        {
+            var connectionInfo = this.GetConnectionInfo(remoteServerAuthentication);
+
+            await connectionContextAction(connectionInfo);
         }
 
         /// <summary>
@@ -79,7 +88,7 @@ namespace R5T.F0030
             IRemoteServerAuthentication remoteServerAuthentication,
             Action<SshClient> sshContextAction)
         {
-            this.InConnectionContext(
+            this.InConnectionContext_Synchronous(
                 remoteServerAuthentication,
                 connection =>
                 {
@@ -93,7 +102,7 @@ namespace R5T.F0030
             IRemoteServerAuthentication remoteServerAuthentication,
             Action<SshClient> sshContextAction)
         {
-            this.InConnectionContext(
+            this.InConnectionContext_Synchronous(
                 remoteServerAuthentication,
                 connection =>
                 {
@@ -112,6 +121,17 @@ namespace R5T.F0030
             sshClient.Connect();
 
             sshContextAction(sshClient);
+        }
+
+        public async Task InSshContext_Connected(
+            ConnectionInfo connection,
+            Func<SshClient, Task> sshContextAction)
+        {
+            using var sshClient = this.GetSshClient(connection);
+
+            sshClient.Connect();
+
+            await sshContextAction(sshClient);
         }
     }
 }

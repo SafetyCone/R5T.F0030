@@ -195,7 +195,7 @@ namespace R5T.F0030
             IRemoteServerAuthentication remoteServerAuthentication,
             Action<SftpClient> sftpContextAction)
         {
-            Instances.SshOperator.InConnectionContext(
+            Instances.SshOperator.InConnectionContext_Synchronous(
                 remoteServerAuthentication,
                 connection =>
                 {
@@ -209,7 +209,7 @@ namespace R5T.F0030
             IRemoteServerAuthentication remoteServerAuthentication,
             Action<SftpClient> sftpContextAction)
         {
-            Instances.SshOperator.InConnectionContext(
+            Instances.SshOperator.InConnectionContext_Synchronous(
                 remoteServerAuthentication,
                 connection =>
                 {
@@ -236,6 +236,32 @@ namespace R5T.F0030
         {
             // Make the extension method the primitive, to allow separation into an SSH.NET extensions library.
             return sftpClient.ListDirectoryAsync(directoryPath);
+        }
+
+        public void UploadFile(
+            SftpClient sftpClient,
+            string sourceFilePath,
+            string destinationFilePath)
+        {
+            using var fileStream = F0000.FileStreamOperator.Instance.OpenRead(sourceFilePath);
+
+            sftpClient.UploadFile(fileStream, destinationFilePath, true);
+        }
+
+        public void UploadFile(
+            SshClient sshClient,
+            string sourceFilePath,
+            string destinationFilePath)
+        {
+            this.InSftpContext_Connected_Synchronous(
+                sshClient.ConnectionInfo,
+                sftpClient =>
+                {
+                    SftpOperator.Instance.UploadFile(
+                        sftpClient,
+                        sourceFilePath,
+                        destinationFilePath);
+                });
         }
     }
 }

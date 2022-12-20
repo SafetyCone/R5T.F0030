@@ -7,12 +7,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\R5T.F0002\source\R5T.F0002\R5T.F0002.csproj" />
     <ProjectReference Include="..\..\..\R5T.L0024\source\R5T.L0024\R5T.L0024.csproj" />
+    <ProjectReference Include="..\..\..\R5T.NG0006\source\R5T.NG0006\R5T.NG0006.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0132\source\R5T.T0132\R5T.T0132.csproj" />
     <ProjectReference Include="..\..\..\R5T.T0144\source\R5T.T0144\R5T.T0144.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Code\Values\" />
   </ItemGroup>
 
 </Project>

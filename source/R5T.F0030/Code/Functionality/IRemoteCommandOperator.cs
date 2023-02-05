@@ -12,13 +12,20 @@ namespace R5T.F0030
     [FunctionalityMarker]
     public partial interface IRemoteCommandOperator : IFunctionalityMarker
     {
+        public bool IsFailure(SshCommand command)
+        {
+            var isFailure = F0000.Instances.ExitCodeOperator.IsFailure(command.ExitStatus);
+            return isFailure;
+        }
+
         public void LogCommandResult(
             SshCommand command,
             ILogger logger)
         {
             logger.LogInformation(command.Result);
 
-            if (F0000.Instances.ExitCodeOperator.IsFailure(command.ExitStatus))
+            var isFailure = this.IsFailure(command);
+            if (isFailure)
             {
                 logger.LogError(command.Error);
             }

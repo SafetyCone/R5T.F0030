@@ -243,7 +243,7 @@ namespace R5T.F0030
             string sourceFilePath,
             string destinationFilePath)
         {
-            using var fileStream = F0000.FileStreamOperator.Instance.OpenRead(sourceFilePath);
+            using var fileStream = Instances.FileStreamOperator.Open_Read(sourceFilePath);
 
             sftpClient.UploadFile(fileStream, destinationFilePath, true);
         }

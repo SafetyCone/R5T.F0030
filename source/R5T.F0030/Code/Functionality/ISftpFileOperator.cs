@@ -12,27 +12,27 @@ namespace R5T.F0030
 	public partial interface ISftpFileOperator : IFunctionalityMarker
 	{
         /// <summary>
-		/// <para>Returns true if the file system entry is a directory, and the directory name is *not* the <see cref="F0002.IDirectoryNames.CurrentDirectory"/> or <see cref="F0002.IDirectoryNames.ParentDirectory"/> name.</para>
-		/// <para><inheritdoc cref="F0002.IDirectoryNameOperator.IsActualDirectoryName(string)" path="/useful-when"/></para>
+		/// <para>Returns true if the file system entry is a directory, and the directory name is *not* the <see cref="L0066.IDirectoryNames.CurrentDirectory"/> or <see cref="L0066.IDirectoryNames.ParentDirectory"/> name.</para>
+		/// <para><inheritdoc cref="L0066.IDirectoryNameOperator.Is_ActualDirectoryName(string)" path="/useful-when"/></para>
 		/// </summary>
 		public bool IsActualDirectory(SftpFile fileSystemEntry)
         {
             var output = true
                 && this.IsDirectory(fileSystemEntry)
-                && F0002.Instances.DirectoryNameOperator.IsActualDirectoryName(fileSystemEntry.Name)
+                && F0002.Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name)
                 ;
 
             return output;
         }
 
         /// <summary>
-		/// <para>Returns true if the file system entry is not a directory with the <see cref="F0002.IDirectoryNames.CurrentDirectory"/> or <see cref="F0002.IDirectoryNames.ParentDirectory"/> name.</para>
-		/// <para><inheritdoc cref="F0002.IDirectoryNameOperator.IsActualDirectoryName(string)" path="/useful-when"/></para>
+		/// <para>Returns true if the file system entry is not a directory with the <see cref="L0066.IDirectoryNames.CurrentDirectory"/> or <see cref="L0066.IDirectoryNames.ParentDirectory"/> name.</para>
+		/// <para><inheritdoc cref="L0066.IDirectoryNameOperator.Is_ActualDirectoryName(string)" path="/useful-when"/></para>
 		/// </summary>
         public bool IsActualFileSystemEntry(SftpFile fileSystemEntry)
         {
             // Does not matter if the entry is a file, all we need to do is make sure the file system entry name is not the current or parent directory name.
-            var output =  F0002.Instances.DirectoryNameOperator.IsActualDirectoryName(fileSystemEntry.Name);
+            var output =  F0002.Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name);
             return output;
         }
 

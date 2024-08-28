@@ -14,7 +14,7 @@ namespace R5T.F0030
     {
         public bool IsFailure(SshCommand command)
         {
-            var isFailure = F0000.Instances.ExitCodeOperator.IsFailure(command.ExitStatus);
+            var isFailure = Instances.ExitCodeOperator.IsFailure(command.ExitStatus);
             return isFailure;
         }
 

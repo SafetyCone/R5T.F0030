@@ -1,6 +1,5 @@
 using System;
 
-using Renci.SshNet;
 using Renci.SshNet.Sftp;
 
 using R5T.T0132;
@@ -19,7 +18,7 @@ namespace R5T.F0030
         {
             var output = true
                 && this.IsDirectory(fileSystemEntry)
-                && F0002.Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name)
+                && Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name)
                 ;
 
             return output;
@@ -32,7 +31,7 @@ namespace R5T.F0030
         public bool IsActualFileSystemEntry(SftpFile fileSystemEntry)
         {
             // Does not matter if the entry is a file, all we need to do is make sure the file system entry name is not the current or parent directory name.
-            var output =  F0002.Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name);
+            var output =  Instances.DirectoryNameOperator.Is_ActualDirectoryName(fileSystemEntry.Name);
             return output;
         }
 

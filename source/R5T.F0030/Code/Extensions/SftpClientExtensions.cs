@@ -19,7 +19,7 @@ namespace System
                 null);
 
             // Evaluate now since I'm not sure how the enumerable is going to behave with async. (Will the enumerable perform multiple calls, each async? That would be crazy!)
-            var output = result.Now();
+            var output = result.ToArray();
             return output;
         }
     }

@@ -23,7 +23,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsActualDirectory)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -36,7 +36,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsActualDirectory)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -49,7 +49,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsFile)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -62,7 +62,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsFile)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -75,7 +75,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsActualFileSystemEntry)
-                .Now();
+                .ToArray();
 
             return output;
         }
@@ -88,7 +88,7 @@ namespace R5T.F0030
 
             var output = fileSystemEntries
                 .Where(Instances.SftpFileOperator.IsActualFileSystemEntry)
-                .Now();
+                .ToArray();
 
             return output;
         }
